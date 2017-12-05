@@ -6,6 +6,7 @@ Use Estimote's native SDKs in Xamarin!
 
 Let us know your thoughts and feedback on [forums.estimote.com][forums].
 
-**One more note:** this repo includes some submodules. Clone with `git clone --recursive` or run `git submodule update --init` before use to pull the submodules.
+**One more note:** this repo includes some submodules.  
+Clone with `git clone --recursive`, or run `git submodule update --init` before use.
 
 [forums]: https://forums.estimote.com
