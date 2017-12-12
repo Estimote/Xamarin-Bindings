@@ -1,0 +1,17 @@
+// minimalistic build.gradle file to easily download all the depedencies
+// of the Estimote Android Proximity SDK
+
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.estimote:proximity-sdk:0.1.0-alpha.5'
+}
+
+task downloadDependencies(type: Copy) {
+    from configurations.compile
+    into 'tmp'
+}

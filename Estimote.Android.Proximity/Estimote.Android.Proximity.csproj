@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5A78455C-17B4-408D-AA3F-29DBFD9D595E}</ProjectGuid>
+    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Estimote.Android.Proximity</RootNamespace>
+    <AssemblyName>Estimote.Android.Proximity</AssemblyName>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <NoWarn>CS0109</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Additions\AboutAdditions.txt" />
+    <None Include="Jars\AboutJars.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
+    <TransformFile Include="Transforms\Metadata.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="Jars\cloud-plugin-0.5.0.aar.classes.jar" />
+    <EmbeddedJar Include="Jars\internal-plugins-api-0.10.0.aar.classes.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\proximity-sdk-0.1.0-alpha.5.aar" />
+  </ItemGroup>
+  <ItemGroup>
+    <InputJar Include="Jars\kotlin-stdlib-1.1.51.jar-lite.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\analytics-plugin-0.1.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\annotations-13.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\converter-gson-2.2.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\dagger-2.9.jar" />
+    <EmbeddedReferenceJar Include="Jars\gson-2.7.jar" />
+    <EmbeddedReferenceJar Include="Jars\javax.inject-1.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-1.1.51.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.1.51.jar" />
+    <EmbeddedReferenceJar Include="Jars\logging-interceptor-3.8.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-3.8.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-1.13.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\reactive-streams-1.0.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\retrofit-2.2.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\retrofit2-rxjava2-adapter-1.0.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\rxandroid-2.0.1.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\rxjava-2.1.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\scanning-sdk-0.9.1.aar.classes.jar" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+</Project>

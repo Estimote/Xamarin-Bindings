@@ -1,7 +1,7 @@
 ﻿using System;
 using Foundation;
 
-namespace Estimote.Proximity.iOS
+namespace Estimote.iOS.Proximity
 {
 
 }
