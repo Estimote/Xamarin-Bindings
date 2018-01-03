@@ -24,20 +24,20 @@ namespace Example.iOS.Proximity
 
 
 
-        ESTProximityObserver observer;
+        EPXProximityObserver observer;
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // get your app ID and token on:
             // https://cloud.estimote.com/#/apps/add/your-own-app
-            var creds = new ESTCloudCredentials("app ID", "app token");
-            observer = new ESTProximityObserver(creds, (error) => {
+            var creds = new EPXCloudCredentials("app ID", "app token");
+            observer = new EPXProximityObserver(creds, (error) => {
                 Debug.WriteLine($"error = {error}");
             });
 
-            var range = new ESTProximityRange(1.0);
+            var range = new EPXProximityRange(1.0);
 
-            var zone1 = new ESTProximityZone(range, "beacon", "beetroot");
+            var zone1 = new EPXProximityZone(range, "beacon", "beetroot");
             zone1.OnEnterAction = (triggeringDeviceAttachment) => {
                 Debug.WriteLine("zone1 enter");
             };
@@ -45,7 +45,7 @@ namespace Example.iOS.Proximity
                 Debug.WriteLine("zone1 exit");
             };
 
-            var zone2 = new ESTProximityZone(range, "beacon", "lemon");
+            var zone2 = new EPXProximityZone(range, "beacon", "lemon");
             zone2.OnEnterAction = (triggeringDeviceAttachment) => {
                 Debug.WriteLine("zone2 enter");
             };
@@ -53,7 +53,7 @@ namespace Example.iOS.Proximity
                 Debug.WriteLine("zone2 exit");
             };
 
-            observer.StartObservingZones(new ESTProximityZone[] { zone1, zone2 });
+            observer.StartObservingZones(new EPXProximityZone[] { zone1, zone2 });
 
             Debug.WriteLine("Proximity all ready to go!");
 

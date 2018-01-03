@@ -4,7 +4,7 @@ using Foundation;
 namespace Estimote.iOS.Proximity
 {
     [BaseType(typeof(NSObject))]
-    interface ESTCloudCredentials
+    interface EPXCloudCredentials
     {
         [Export("initWithAppID:appToken:")]
         IntPtr Constructor(string appId, string appToken);
@@ -17,7 +17,7 @@ namespace Estimote.iOS.Proximity
     }
 
     [BaseType(typeof(NSObject))]
-    interface ESTProximityDeviceAttachment
+    interface EPXProximityDeviceAttachment
     {
         [Export("initWithDeviceIdentifier:json:")]
         IntPtr Constructor(string deviceIdentifier, NSDictionary json);
@@ -32,39 +32,39 @@ namespace Estimote.iOS.Proximity
     delegate void ErrorHandler(NSError error);
 
     [BaseType(typeof(NSObject))]
-    interface ESTProximityObserver
+    interface EPXProximityObserver
     {
         [Export("initWithCredentials:errorBlock:")]
-        IntPtr Constructor(ESTCloudCredentials credentials,
+        IntPtr Constructor(EPXCloudCredentials credentials,
                            ErrorHandler errorHandler);
 
         [Export("startObservingZones:")]
-        void StartObservingZones(ESTProximityZone [] zones);
+        void StartObservingZones(EPXProximityZone [] zones);
 
         [Export("stopObservingZones")]
         void StopObservingZones();
     }
 
     [BaseType(typeof(NSObject))]
-    interface ESTProximityRange
+    interface EPXProximityRange
     {
         [Export("initWithDesiredMeanTriggerDistance:")]
         IntPtr Constructor(double desiredMeanTriggerDistance);
     }
 
     delegate void OnEnterAction(
-        ESTProximityDeviceAttachment triggeringDeviceAttachment);
+        EPXProximityDeviceAttachment triggeringDeviceAttachment);
 
     delegate void OnExitAction(
-        ESTProximityDeviceAttachment triggeringDeviceAttachment);
+        EPXProximityDeviceAttachment triggeringDeviceAttachment);
 
     delegate void OnChangeAction(NSSet attachmentsCurrentlyInside);
 
     [BaseType(typeof(NSObject))]
-    interface ESTProximityZone
+    interface EPXProximityZone
     {
         [Export("initWithRange:attachmentKey:attachmentValue:")]
-        IntPtr Constructor(ESTProximityRange range,
+        IntPtr Constructor(EPXProximityRange range,
                            string attachmentKey, string attachmentValue);
 
         [Export("onEnterAction")]

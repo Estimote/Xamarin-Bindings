@@ -42,7 +42,7 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="iOS-Proximity-SDK\EstimoteSDKv5\EstimoteSDKv5.framework">
+    <NativeReference Include="iOS-Proximity-SDK\EstimoteProximitySDK\EstimoteProximitySDK.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
