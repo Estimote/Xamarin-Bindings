@@ -1,4 +1,4 @@
 [submodule "Estimote.iOS.Proximity/iOS-Proximity-SDK"]
 	path = Estimote.iOS.Proximity/iOS-Proximity-SDK
-	url = git@github.com:Estimote/iOS-Proximity-SDK.git
+	url = https://github.com/Estimote/iOS-Proximity-SDK.git
 	branch = master
