@@ -7,6 +7,11 @@ using Android.Util;
 using Estimote.Android.Cloud;
 using Estimote.Android.Proximity;
 
+using Android;
+using Android.Content.PM;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+
 namespace Example.Android.Proximity
 {
     [Activity(Label = "Proximity", MainLauncher = true)]
@@ -27,7 +32,10 @@ namespace Example.Android.Proximity
             // https://cloud.estimote.com/#/apps/add/your-own-app
             var creds = new EstimoteCloudCredentials("app ID", "app token");
 
-            observer = new ProximityObserverFactory().Create(ApplicationContext, creds);
+            observer = new ProximityObserverBuilder(ApplicationContext, creds)
+                .WithBalancedPowerMode()
+                .WithTelemetryReporting()
+                .Build();
 
             var zone1 = observer
                 .ZoneBuilder()
@@ -35,20 +43,36 @@ namespace Example.Android.Proximity
                 .InNearRange()
                 .WithOnEnterAction(new MyEnterHandler())
                 .Create();
+            observer.AddProximityZone(zone1);
 
-            observationHandler = observer
-                .AddProximityZone(zone1)
-                .WithBalancedPowerMode()
-                .StartWithSimpleScanner();
+            // the actual observation starts further below in OnResume or
+            // OnRequestPermissionsResult, once we obtain the location
+            // permission from the user, or confirm that we already have it
 
             Log.Debug("app", "Proximity all ready to go!");
+        }
+
+        void startProximityObservation()
+        {
+            if (observationHandler != null)
+            {
+                // already observing!
+                return;
+            }
+
+            Log.Debug("app", "Starting proximity observation");
+
+            observationHandler = observer.Start();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            observationHandler.Stop();
+            if (observationHandler != null)
+            {
+                observationHandler.Stop();
+            }
         }
 
         class MyEnterHandler : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
@@ -58,6 +82,66 @@ namespace Example.Android.Proximity
                 Log.Debug("app", "MyEnterHandler");
 
                 return null;
+            }
+        }
+
+        // check and request permission to access location data
+        //
+        // code ported from:
+        // https://developer.android.com/training/permissions/requesting.html
+
+        private const int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 1;
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (ContextCompat.CheckSelfPermission(
+                this, Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
+            {
+                if (ActivityCompat.ShouldShowRequestPermissionRationale(
+                    this, Manifest.Permission.AccessCoarseLocation))
+                {
+                    Log.Debug("app", "ShouldShowRequestPermissionRationale");
+
+                    // we should show an extra dialog here to explain why we
+                    // need the permission, and then follow up with an actual
+                    // call to RequestPermissions ... but in this example, let's
+                    // just call RequestPermissions straight away
+                }
+
+                ActivityCompat.RequestPermissions(
+                        this,
+                        new string[] { Manifest.Permission.AccessCoarseLocation },
+                        MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
+            }
+            else
+            {
+                Log.Debug("app", "Already have the location permission");
+
+                startProximityObservation();
+            }
+        }
+
+        public override void OnRequestPermissionsResult(
+            int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            switch (requestCode)
+            {
+                case MY_PERMISSIONS_REQUEST_COARSE_LOCATION:
+                    {
+                        if (grantResults.Length > 0 && grantResults[0] == Permission.Granted)
+                        {
+                            Log.Debug("app", "Location permission granted");
+
+                            startProximityObservation();
+                        }
+                        else
+                        {
+                            Log.Debug("app", "Location permission denied");
+                        }
+                        return;
+                    }
             }
         }
     }

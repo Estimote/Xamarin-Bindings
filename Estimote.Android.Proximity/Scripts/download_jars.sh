@@ -34,7 +34,8 @@ done
 
 kotlin_stdlib=`ls kotlin-stdlib-1*`
 unzip -o $kotlin_stdlib -d "$kotlin_stdlib.unpacked"
-find "$kotlin_stdlib.unpacked/kotlin" -type f -not \( -name 'Unit.class' -or -name 'Function.class' -or -name 'Function1.class' \) -exec rm {} \;
+find "$kotlin_stdlib.unpacked/kotlin" -type f -not \( -name 'Unit.class' -or \
+	-name 'Function.class' -or -name 'Function0.class' -or -name 'Function1.class' \) -exec rm {} \;
 cd "$kotlin_stdlib.unpacked"
 zip -r "../$kotlin_stdlib-lite.jar" META-INF kotlin
 cd ..

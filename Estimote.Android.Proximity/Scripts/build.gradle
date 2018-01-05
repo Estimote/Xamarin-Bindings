@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.estimote:proximity-sdk:0.1.0-alpha.5'
+    compile 'com.estimote:proximity-sdk:0.1.0-alpha.6'
 }
 
 task downloadDependencies(type: Copy) {

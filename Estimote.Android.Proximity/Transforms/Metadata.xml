@@ -8,6 +8,8 @@
 
     <remove-node path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.dagger')]" />
     <remove-node path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.monitoring')]" />
+    <remove-node path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.telemetry_reporter')]" />
+    <remove-node path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.proximity.configuration')]" />
 
     <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'EstimoteProximityObserver')]" />
     <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'EstimoteProximityZone')]" />
