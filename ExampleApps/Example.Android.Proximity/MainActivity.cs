@@ -8,6 +8,7 @@ using Estimote.Android.Cloud;
 using Estimote.Android.Proximity;
 
 using Android;
+using Android.Content;
 using Android.Content.PM;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
@@ -20,6 +21,8 @@ namespace Example.Android.Proximity
         IProximityObserver observer;
         IProximityObserverHandler observationHandler;
 
+        Notification notification;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -27,14 +30,37 @@ namespace Example.Android.Proximity
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-
             // get your app ID and token on:
             // https://cloud.estimote.com/#/apps/add/your-own-app
             var creds = new EstimoteCloudCredentials("app ID", "app token");
 
+            // starting with Android 8.0, the most reliable way to keep
+            // Bluetooth scanning active is through a foreground service, and
+            // for that to work we're required to show a notification that
+            // informs the user about the activity
+            //
+            // read more about it on:
+            // https://developer.android.com/guide/components/services.html#Foreground
+
+            var channelId = "proximity_scanning";
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                // Android 8.0 and up require a channel for the notifications
+                var channel = new NotificationChannel(channelId, "Bluetooth activity", NotificationImportance.Low);
+                var notificationManager = this.GetSystemService(Context.NotificationService) as NotificationManager;
+                notificationManager.CreateNotificationChannel(channel);
+            }
+            notification = new NotificationCompat.Builder(this, channelId)
+                    .SetSmallIcon(Resource.Drawable.notification_icon_background)
+                    .SetContentTitle("Proximity")
+                    .SetContentText("Proximity demo is scanning for beacons")
+                    .Build();
+
             observer = new ProximityObserverBuilder(ApplicationContext, creds)
                 .WithBalancedPowerMode()
                 .WithTelemetryReporting()
+                .WithScannerInForegroundService(notification)
+                .WithOnErrorAction(new MyErrorHandler())
                 .Build();
 
             var zone1 = observer
@@ -80,6 +106,17 @@ namespace Example.Android.Proximity
             public Java.Lang.Object Invoke(Java.Lang.Object p0)
             {
                 Log.Debug("app", "MyEnterHandler");
+
+                return null;
+            }
+        }
+
+        class MyErrorHandler : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
+        {
+            public Java.Lang.Object Invoke(Java.Lang.Object p0)
+            {
+                Log.Debug("app", "MyErrorHandler");
+                Log.Debug("app", p0.ToString());
 
                 return null;
             }
