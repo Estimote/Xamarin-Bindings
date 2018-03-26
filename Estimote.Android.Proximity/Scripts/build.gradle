@@ -5,10 +5,11 @@ apply plugin: 'java'
 
 repositories {
     jcenter()
+    maven { url 'https://maven.google.com' }
 }
 
 dependencies {
-    compile 'com.estimote:proximity-sdk:0.1.0-alpha.6'
+    compile 'com.estimote:proximity-sdk:0.4.1'
 }
 
 task downloadDependencies(type: Copy) {

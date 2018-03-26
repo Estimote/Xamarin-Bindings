@@ -4,7 +4,6 @@ using Android.OS;
 
 using Android.Util;
 
-using Estimote.Android.Cloud;
 using Estimote.Android.Proximity;
 
 using Android;
@@ -58,8 +57,7 @@ namespace Example.Android.Proximity
 
             observer = new ProximityObserverBuilder(ApplicationContext, creds)
                 .WithBalancedPowerMode()
-                .WithTelemetryReporting()
-                .WithScannerInForegroundService(notification)
+                //.WithScannerInForegroundService(notification)
                 .WithOnErrorAction(new MyErrorHandler())
                 .Build();
 
@@ -105,7 +103,9 @@ namespace Example.Android.Proximity
         {
             public Java.Lang.Object Invoke(Java.Lang.Object p0)
             {
-                Log.Debug("app", "MyEnterHandler");
+                IProximityAttachment attachment = (IProximityAttachment)p0;
+
+                Log.Debug("app", $"MyEnterHandler");
 
                 return null;
             }
@@ -113,10 +113,9 @@ namespace Example.Android.Proximity
 
         class MyErrorHandler : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
         {
-            public Java.Lang.Object Invoke(Java.Lang.Object p0)
+            public Java.Lang.Object Invoke(Java.Lang.Object throwable)
             {
-                Log.Debug("app", "MyErrorHandler");
-                Log.Debug("app", p0.ToString());
+                Log.Debug("app", $"MyErrorHandler, {throwable}");
 
                 return null;
             }
