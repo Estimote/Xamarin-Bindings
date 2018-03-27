@@ -38,18 +38,18 @@ namespace Example.iOS.Proximity
             var range = new EPXProximityRange(1.0);
 
             var zone1 = new EPXProximityZone(range, "beacon", "beetroot");
-            zone1.OnEnterAction = (triggeringDeviceAttachment) => {
+            zone1.OnEnterAction = (attachment) => {
                 Debug.WriteLine("zone1 enter");
             };
-            zone1.OnExitAction = (triggeringDeviceAttachment) => {
+            zone1.OnExitAction = (attachment) => {
                 Debug.WriteLine("zone1 exit");
             };
 
             var zone2 = new EPXProximityZone(range, "beacon", "lemon");
-            zone2.OnEnterAction = (triggeringDeviceAttachment) => {
+            zone2.OnEnterAction = (attachment) => {
                 Debug.WriteLine("zone2 enter");
             };
-            zone2.OnExitAction = (triggeringDeviceAttachment) => {
+            zone2.OnExitAction = (attachment) => {
                 Debug.WriteLine("zone2 exit");
             };
 

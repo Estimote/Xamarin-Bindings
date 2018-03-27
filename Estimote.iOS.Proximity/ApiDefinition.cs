@@ -17,16 +17,16 @@ namespace Estimote.iOS.Proximity
     }
 
     [BaseType(typeof(NSObject))]
-    interface EPXProximityDeviceAttachment
+    interface EPXDeviceAttachment
     {
-        [Export("initWithDeviceIdentifier:json:")]
-        IntPtr Constructor(string deviceIdentifier, NSDictionary json);
+        [Export("initWithDeviceIdentifier:payload:")]
+        IntPtr Constructor(string deviceIdentifier, NSDictionary payload);
 
         [Export("deviceIdentifier")]
         string DeviceIdentifier { get; }
 
-        [Export("json")]
-        NSDictionary Json { get; }
+        [Export("payload")]
+        NSDictionary Payload { get; }
     }
 
     delegate void ErrorHandler(NSError error);
@@ -52,13 +52,11 @@ namespace Estimote.iOS.Proximity
         IntPtr Constructor(double desiredMeanTriggerDistance);
     }
 
-    delegate void OnEnterAction(
-        EPXProximityDeviceAttachment triggeringDeviceAttachment);
+    delegate void OnEnterAction(EPXDeviceAttachment attachment);
 
-    delegate void OnExitAction(
-        EPXProximityDeviceAttachment triggeringDeviceAttachment);
+    delegate void OnExitAction(EPXDeviceAttachment attachment);
 
-    delegate void OnChangeAction(NSSet attachmentsCurrentlyInside);
+    delegate void OnChangeAction(NSSet attachments);
 
     [BaseType(typeof(NSObject))]
     interface EPXProximityZone
