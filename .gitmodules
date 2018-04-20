@@ -2,3 +2,6 @@
 	path = Estimote.iOS.Proximity/iOS-Proximity-SDK
 	url = https://github.com/Estimote/iOS-Proximity-SDK.git
 	branch = master
+[submodule "Estimote.iOS.Proximity/iOS-Bluetooth-Scanning"]
+	path = Estimote.iOS.Proximity/iOS-Bluetooth-Scanning
+	url = https://github.com/Estimote/iOS-Bluetooth-Scanning.git
