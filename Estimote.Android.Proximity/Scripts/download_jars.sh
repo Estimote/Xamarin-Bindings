@@ -49,5 +49,6 @@ cd ..
 # and only the things we need are defined in the .csproj, so the
 # things we don't need won't show up in Visual Studio anyway
 
+rm proximity-sdk-*.jar
 mv *.jar ../../Jars
-mv *.aar ../../Jars
+mv proximity-sdk-*.aar ../../Jars
