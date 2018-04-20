@@ -36,5 +36,13 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Change me in the Info.plist file (when-in-use)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Change me in the Info.plist file (always-and-when-in-use)</string>
 </dict>
 </plist>
