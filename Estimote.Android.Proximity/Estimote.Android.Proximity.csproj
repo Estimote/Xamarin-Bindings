@@ -56,7 +56,7 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\proximity-sdk-0.4.1.aar" />
+    <LibraryProjectZip Include="Jars\proximity-sdk-0.5.0.aar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\annotations-13.0.jar" />
@@ -72,21 +72,31 @@
     <EmbeddedReferenceJar Include="Jars\dagger-2.11.jar" />
     <EmbeddedReferenceJar Include="Jars\reactive-streams-1.0.1.jar" />
     <EmbeddedReferenceJar Include="Jars\rxjava-2.1.4.jar" />
-    <EmbeddedReferenceJar Include="Jars\analytics-plugin-0.3.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\analytics-plugin-0.3.1.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\ketchup-0.4.0.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-1.2.21.jar" />
-    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jdk7-1.2.21.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-1.2.31.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jdk7-1.2.31.jar" />
     <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.1.51.jar" />
-    <EmbeddedReferenceJar Include="Jars\scanning-plugin-0.16.1.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\support-annotations-27.0.2.jar" />
-    <EmbeddedReferenceJar Include="Jars\cloud-plugin-0.10.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\scanning-plugin-0.18.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\support-annotations-27.1.1.jar" />
+    <EmbeddedReferenceJar Include="Jars\cloud-plugin-0.11.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\android-skald-0.1.1.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\db-1.0.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\db-framework-1.0.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\repository-plugin-0.1.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\support-compat-26.1.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\support-core-utils-26.1.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\core-common-1.0.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\core-runtime-1.0.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\room-common-1.0.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\room-runtime-1.0.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\room-rxjava2-1.0.0.aar.classes.jar" />
   </ItemGroup>
   <ItemGroup>
-    <InputJar Include="Jars\kotlin-stdlib-1.2.21.jar-lite.jar" />
+    <InputJar Include="Jars\kotlin-stdlib-1.2.31.jar-lite.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="Jars\internal-plugins-api-0.20.0.aar.classes.jar" />
+    <EmbeddedJar Include="Jars\internal-plugins-api-0.21.0.aar.classes.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

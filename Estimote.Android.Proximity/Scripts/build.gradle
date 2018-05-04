@@ -9,10 +9,21 @@ repositories {
 }
 
 dependencies {
-    compile 'com.estimote:proximity-sdk:0.4.1'
+    compile 'com.estimote:proximity-sdk:0.5.0'
 }
 
 task downloadDependencies(type: Copy) {
     from configurations.compile
+    eachFile {
+        if (it.file.absolutePath.contains('android.arch.persistence.room')) {
+            println it
+            it.name = 'room-' + it.name
+        }
+        if (it.file.absolutePath.contains('android.arch.core')) {
+            println it
+            it.name = 'core-' + it.name
+        }
+    }
     into 'tmp'
+    duplicatesStrategy 'fail'
 }
