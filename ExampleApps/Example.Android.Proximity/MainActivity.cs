@@ -1,12 +1,9 @@
-﻿using Android.App;
-using Android.Widget;
-using Android.OS;
-
-using Android.Util;
-
-using Estimote.Android.Proximity;
+﻿using Estimote.Android.Proximity;
 
 using Android;
+using Android.App;
+using Android.OS;
+using Android.Util;
 using Android.Content;
 using Android.Content.PM;
 using Android.Support.V4.App;
@@ -50,14 +47,14 @@ namespace Example.Android.Proximity
                 notificationManager.CreateNotificationChannel(channel);
             }
             notification = new NotificationCompat.Builder(this, channelId)
-                    .SetSmallIcon(Resource.Drawable.notification_icon_background)
+                    .SetSmallIcon(global::Android.Resource.Drawable.IcDialogInfo)
                     .SetContentTitle("Proximity")
                     .SetContentText("Proximity demo is scanning for beacons")
                     .Build();
 
             observer = new ProximityObserverBuilder(ApplicationContext, creds)
                 .WithBalancedPowerMode()
-                //.WithScannerInForegroundService(notification)
+                .WithScannerInForegroundService(notification)
                 .WithOnErrorAction(new MyErrorHandler())
                 .Build();
 
