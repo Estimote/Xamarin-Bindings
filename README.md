@@ -37,7 +37,7 @@ There's a few extra things to keep in mind:
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         ```
 
-    - this `<service>` definition inside the `<application>` tag, for example:
+    - this `<service>` definition inside the `<application>` tag:
 
         ```xml
         <service
