@@ -78,14 +78,11 @@
     <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jdk7-1.2.31.jar" />
     <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.1.51.jar" />
     <EmbeddedReferenceJar Include="Jars\scanning-plugin-0.18.0.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\support-annotations-27.1.1.jar" />
     <EmbeddedReferenceJar Include="Jars\cloud-plugin-0.11.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\android-skald-0.1.1.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\db-1.0.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\db-framework-1.0.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\repository-plugin-0.1.0.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\support-compat-26.1.0.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\support-core-utils-26.1.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\core-common-1.0.0.jar" />
     <EmbeddedReferenceJar Include="Jars\core-runtime-1.0.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\room-common-1.0.0.jar" />

@@ -65,6 +65,12 @@ There's a few extra things to keep in mind:
         </manifest>
         ```
 
+- Make sure your project includes these support packages, as the Proximity SDK depends on them:
+
+    - Xamarin.Android.Support.Annotations
+    - Xamarin.Android.Support.Compat
+    - Xamarin.Android.Support.Core.Utils
+
 ## Contact & feedback
 
 Let us know your thoughts and feedback on [forums.estimote.com][forums].
