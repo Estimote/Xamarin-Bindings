@@ -22,45 +22,58 @@ namespace Example.iOS.Proximity
 
 
 
-
-
-        EPXProximityObserver observer;
+        ProximityObserver observer;
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // get your app ID and token on:
             // https://cloud.estimote.com/#/apps/add/your-own-app
-            var creds = new EPXCloudCredentials("app ID", "app token");
-            observer = new EPXProximityObserver(creds, (error) => {
+            var creds = new CloudCredentials("app ID", "app token");
+            observer = new ProximityObserver(creds, (error) =>
+            {
                 Debug.WriteLine($"error = {error}");
             });
 
-            var range = new EPXProximityRange(1.0);
+            var range = new ProximityRange(1.0);
 
-            var zone1 = new EPXProximityZone(range, "beacon", "beetroot");
-            zone1.OnEnterAction = (attachment) => {
-                Debug.WriteLine("zone1 enter");
-            };
-            zone1.OnExitAction = (attachment) => {
-                Debug.WriteLine("zone1 exit");
+            var zone1 = new ProximityZone("lobby", range)
+            {
+                OnEnter = (context) =>
+                {
+                    Debug.WriteLine($"zone1 enter, context = {context}");
+                },
+                OnExit = (context) =>
+                {
+                    Debug.WriteLine($"zone1 exit, context = {context}");
+                },
+                OnContextChange = (contexts) =>
+                {
+                    Debug.WriteLine($"zone1 contextChange, contexts = {contexts}");
+                }
             };
 
-            var zone2 = new EPXProximityZone(range, "beacon", "lemon");
-            zone2.OnEnterAction = (attachment) => {
-                Debug.WriteLine("zone2 enter");
-            };
-            zone2.OnExitAction = (attachment) => {
-                Debug.WriteLine("zone2 exit");
+            var zone2 = new ProximityZone("conf-room", range)
+            {
+                OnEnter = (context) =>
+                {
+                    Debug.WriteLine($"zone2 enter, context = {context}");
+                },
+                OnExit = (context) =>
+                {
+                    Debug.WriteLine($"zone2 exit, context = {context}");
+                },
+                OnContextChange = (contexts) =>
+                {
+                    Debug.WriteLine($"zone2 contextChange, contexts = {contexts}");
+                }
             };
 
-            observer.StartObservingZones(new EPXProximityZone[] { zone1, zone2 });
+            observer.StartObservingZones(new ProximityZone[] { zone1, zone2 });
 
             Debug.WriteLine("Proximity all ready to go!");
 
             return true;
         }
-
-
 
 
 
@@ -96,4 +109,3 @@ namespace Example.iOS.Proximity
         }
     }
 }
-

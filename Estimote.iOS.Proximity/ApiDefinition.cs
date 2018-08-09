@@ -3,8 +3,8 @@ using Foundation;
 
 namespace Estimote.iOS.Proximity
 {
-    [BaseType(typeof(NSObject))]
-    interface EPXCloudCredentials
+    [BaseType(typeof(NSObject), Name = "EPXCloudCredentials")]
+    public interface CloudCredentials
     {
         [Export("initWithAppID:appToken:")]
         IntPtr Constructor(string appId, string appToken);
@@ -16,62 +16,61 @@ namespace Estimote.iOS.Proximity
         string AppToken { get; }
     }
 
-    [BaseType(typeof(NSObject))]
-    interface EPXDeviceAttachment
+    [BaseType(typeof(NSObject), Name = "EPXProximityZoneContext")]
+    public interface ProximityZoneContext
     {
-        [Export("initWithDeviceIdentifier:payload:")]
-        IntPtr Constructor(string deviceIdentifier, NSDictionary payload);
-
         [Export("deviceIdentifier")]
         string DeviceIdentifier { get; }
 
-        [Export("payload")]
-        NSDictionary Payload { get; }
+        [Export("tag")]
+        string Tag { get; }
+
+        [Export("attachments")]
+        NSDictionary Attachments { get; }
     }
 
-    delegate void ErrorHandler(NSError error);
+    public delegate void ErrorHandler(NSError error);
 
-    [BaseType(typeof(NSObject))]
-    interface EPXProximityObserver
+    [BaseType(typeof(NSObject), Name = "EPXProximityObserver")]
+    public interface ProximityObserver
     {
-        [Export("initWithCredentials:errorBlock:")]
-        IntPtr Constructor(EPXCloudCredentials credentials,
+        [Export("initWithCredentials:onError:")]
+        IntPtr Constructor(CloudCredentials credentials,
                            ErrorHandler errorHandler);
 
         [Export("startObservingZones:")]
-        void StartObservingZones(EPXProximityZone [] zones);
+        void StartObservingZones(ProximityZone[] zones);
 
         [Export("stopObservingZones")]
         void StopObservingZones();
     }
 
-    [BaseType(typeof(NSObject))]
-    interface EPXProximityRange
+    [BaseType(typeof(NSObject), Name = "EPXProximityRange")]
+    public interface ProximityRange
     {
         [Export("initWithDesiredMeanTriggerDistance:")]
         IntPtr Constructor(double desiredMeanTriggerDistance);
     }
 
-    delegate void OnEnterAction(EPXDeviceAttachment attachment);
+    public delegate void OnEnter(ProximityZoneContext context);
 
-    delegate void OnExitAction(EPXDeviceAttachment attachment);
+    public delegate void OnExit(ProximityZoneContext context);
 
-    delegate void OnChangeAction(NSSet attachments);
+    public delegate void OnContextChange(NSSet contexts);
 
-    [BaseType(typeof(NSObject))]
-    interface EPXProximityZone
+    [BaseType(typeof(NSObject), Name = "EPXProximityZone")]
+    public interface ProximityZone
     {
-        [Export("initWithRange:attachmentKey:attachmentValue:")]
-        IntPtr Constructor(EPXProximityRange range,
-                           string attachmentKey, string attachmentValue);
+        [Export("initWithTag:range:")]
+        IntPtr Constructor(string tag, ProximityRange range);
 
-        [Export("onEnterAction")]
-        OnEnterAction OnEnterAction { get; set; }
+        [Export("onEnter")]
+        OnEnter OnEnter { get; set; }
 
-        [Export("onExitAction")]
-        OnExitAction OnExitAction { get; set; }
+        [Export("onExit")]
+        OnExit OnExit { get; set; }
 
-        [Export("onChangeAction")]
-        OnChangeAction OnChangeAction { get; set; }
+        [Export("onContextChange")]
+        OnContextChange OnContextChange { get; set; }
     }
 }
