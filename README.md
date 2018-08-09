@@ -54,7 +54,7 @@ There's a few extra things to keep in mind:
                   android:versionCode="1"
                   android:versionName="1.0"
                   package="com.estimote.example.Proximity">
-            <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="27" />
+            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
             <application android:allowBackup="true" android:label="@string/app_name">
                 <service
