@@ -67,9 +67,7 @@ There's a few extra things to keep in mind:
 
 - Make sure your project includes these support packages, as the Proximity SDK depends on them:
 
-    - Xamarin.Android.Support.Annotations
     - Xamarin.Android.Support.Compat
-    - Xamarin.Android.Support.Core.Utils
 
 ## Contact & feedback
 

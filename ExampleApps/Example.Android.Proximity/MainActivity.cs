@@ -17,6 +17,8 @@ namespace Example.Android.Proximity
         IProximityObserver observer;
         IProximityObserverHandler observationHandler;
 
+        IProximityZone zone;
+
         Notification notification;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -55,16 +57,14 @@ namespace Example.Android.Proximity
             observer = new ProximityObserverBuilder(ApplicationContext, creds)
                 .WithBalancedPowerMode()
                 .WithScannerInForegroundService(notification)
-                .WithOnErrorAction(new MyErrorHandler())
+                .OnError(new MyErrorHandler())
                 .Build();
 
-            var zone1 = observer
-                .ZoneBuilder()
-                .ForAttachmentKeyAndValue("beacon", "beetroot")
-                .InNearRange()
-                .WithOnEnterAction(new MyEnterHandler())
-                .Create();
-            observer.AddProximityZone(zone1);
+            zone = new ProximityZoneBuilder()
+                .ForTag("lobby")
+                .InCustomRange(20.0)
+                .OnEnter(new MyEnterHandler())
+                .Build();
 
             // the actual observation starts further below in OnResume or
             // OnRequestPermissionsResult, once we obtain the location
@@ -83,7 +83,7 @@ namespace Example.Android.Proximity
 
             Log.Debug("app", "Starting proximity observation");
 
-            observationHandler = observer.Start();
+            observationHandler = observer.StartObserving(zone);
         }
 
         protected override void OnDestroy()
@@ -100,9 +100,9 @@ namespace Example.Android.Proximity
         {
             public Java.Lang.Object Invoke(Java.Lang.Object p0)
             {
-                IProximityAttachment attachment = (IProximityAttachment)p0;
+                IProximityZoneContext context = (IProximityZoneContext)p0;
 
-                Log.Debug("app", $"MyEnterHandler");
+                Log.Debug("app", $"MyEnterHandler, context = {context}");
 
                 return null;
             }
@@ -179,4 +179,3 @@ namespace Example.Android.Proximity
         }
     }
 }
-

@@ -2,15 +2,13 @@
 <metadata>
     <remove-node path="//class[@name='BuildConfig']" />
 
-    <attr path="/api/package[starts-with(@name, 'com.estimote.internal_plugins_api')]" name="managedName">Estimote.Android.Api</attr>
     <attr path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk')]" name="managedName">Estimote.Android.Proximity</attr>
+    <attr path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.internals')]" name="managedName">Estimote.Android.Proximity.Internals</attr>
 
-    <remove-node path="/api/package[starts-with(@name, 'com.estimote') and not(starts-with(@name, 'com.estimote.proximity_sdk.proximity') or starts-with(@name, 'com.estimote.internal_plugins_api'))]" />
-    <remove-node path="/api/package[starts-with(@name, 'com.estimote.proximity_sdk.proximity.')]" />
-
-    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'EstimoteProximityObserver')]" />
-    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'EstimoteProximityZone')]" />
-    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'MonitoringZoneProximityDecorator')]" />
-    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'ProximityObservationUseCase')]" />
-    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.proximity']/class[starts-with(@name, 'RxHandler')]" />
+    <remove-node path="/api/package[starts-with(@name, 'com.estimote') and not(
+            starts-with(@name, 'com.estimote.proximity_sdk.api') 
+            or
+            @name='com.estimote.proximity_sdk.internals.proximity'
+    )]" />
+    <remove-node path="/api/package[@name='com.estimote.proximity_sdk.internals.proximity']//class[not(@name='EstimoteProximityZoneContext')]" />
 </metadata>
