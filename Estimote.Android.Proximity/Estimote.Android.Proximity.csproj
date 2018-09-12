@@ -90,7 +90,6 @@
     <EmbeddedReferenceJar Include="Jars\skald-kotlin-0.3.1.jar" />
     <EmbeddedReferenceJar Include="Jars\skald-logcat-plugin-0.1.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\support-annotations-27.1.1.jar" />
-    <EmbeddedReferenceJar Include="Jars\support-core-utils-26.1.0.aar.classes.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
