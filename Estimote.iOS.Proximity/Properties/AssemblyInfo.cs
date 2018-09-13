@@ -13,9 +13,9 @@ using Foundation;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("Estimote.iOS.Proximity")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Xamarin bindings for Estimote iOS Proximity SDK")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Estimote, Inc.")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("${AuthorCopyright}")]
 [assembly: AssemblyTrademark("")]

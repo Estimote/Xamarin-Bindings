@@ -6,9 +6,9 @@ using Android.App;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("Estimote.Android.Proximity")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Xamarin bindings for Estimote Android Proximity SDK")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Estimote, Inc.")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("${AuthorCopyright}")]
 [assembly: AssemblyTrademark("")]

@@ -156,6 +156,9 @@
     <Reference Include="Xamarin.Swift4.UIKit">
       <HintPath>..\..\packages\Xamarin.Swift4.UIKit.4.1.2\lib\xamarinios10\Xamarin.Swift4.UIKit.dll</HintPath>
     </Reference>
+    <Reference Include="Estimote.iOS.Proximity">
+      <HintPath>..\..\packages\Estimote.iOS.Proximity.1.1.0\lib\xamarinios10\Estimote.iOS.Proximity.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -180,12 +183,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Estimote.iOS.Proximity\Estimote.iOS.Proximity.csproj">
-      <Project>{92F2AEFC-E2B5-4694-A222-58367FFFEFE3}</Project>
-      <Name>Estimote.iOS.Proximity</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets" Condition="Exists('..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets')" />
