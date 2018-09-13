@@ -1,24 +1,18 @@
 # Estimote Xamarin Bindings
 
-An example Visual Studio Solution which shows how to bind Estimote SDKs to Xamarin. Includes example apps which show how to use the generated bindings.
+Xamarin bindings for Estimote SDKs.
 
-## Getting started
-
-> **Note:** This repo includes submodules.<br>
-Clone with `git clone --recursive`, or run `git submodule update --init` before use.
-
-Open the Estimote-Xamarin-Bindings.sln and run the Example.Android.Proximity or Example.iOS.Proximity. Note that iOS/Android simulators don't support Bluetooth, so you need to run on a physical device.
+Visit https://developer.estimote.com to learn more about the variety of Estimote SDKs, and for the integration tutorials. (The documentation is mostly in Swift and Java, but the Xamarin/C# APIs are almost 1:1 with the native APIs, so the docs should still be quite useful.)
 
 ## Use it in your own app
 
-The easiest way is probably to add the Estimote.\*.Proximity project to your own Solution, and then add an appropriate Reference.
+You can get all the Estimote.* packages on NuGet.
 
-There's a few extra things to keep in mind:
+We also recommend cloning this repo and checking out the ExampleApps—for example, to see how to request the necessary Location permission on Android.
+
+Here's a list of a few extra things that you need to configure in your projects:
 
 **iOS**
-
-- You need to install the Xamarin.Swift4 package in your app.
-    - (Estimote Proximity SDK for iOS is built mostly in Swift, and so it depends on these Swift libraries.)
 
 - In your Info.plist file, you need to add
 
@@ -54,7 +48,8 @@ There's a few extra things to keep in mind:
                   android:versionCode="1"
                   android:versionName="1.0"
                   package="com.estimote.example.Proximity">
-            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+
+            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
             <application android:allowBackup="true" android:label="@string/app_name">
                 <service
@@ -62,13 +57,9 @@ There's a few extra things to keep in mind:
                     android:enabled="true"
                     android:exported="false" />
             </application>
+
         </manifest>
         ```
-
-- Make sure your project includes these support packages, as the Proximity SDK depends on them:
-
-    - Xamarin.Android.Support.Compat
-    - Xamarin.Android.Support.Core.Utils
 
 ## Contact & feedback
 
