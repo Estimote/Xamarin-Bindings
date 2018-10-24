@@ -5,3 +5,9 @@
 [submodule "Estimote.iOS.Proximity/iOS-Bluetooth-Scanning"]
 	path = Estimote.iOS.Proximity/iOS-Bluetooth-Scanning
 	url = https://github.com/Estimote/iOS-Bluetooth-Scanning.git
+[submodule "Estimote.iOS.Indoor/iOS-Indoor-SDK"]
+	path = Estimote.iOS.Indoor/iOS-Indoor-SDK
+	url = https://github.com/Estimote/iOS-Indoor-SDK.git
+[submodule "Estimote.iOS.Indoor/iOS-SDK"]
+	path = Estimote.iOS.Indoor/iOS-SDK
+	url = https://github.com/Estimote/iOS-SDK.git
