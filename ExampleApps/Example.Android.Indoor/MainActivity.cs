@@ -1,4 +1,4 @@
-﻿using Estimote.Android.Proximity;
+﻿using Estimote.Android.Indoor;
 
 using Android;
 using Android.App;
@@ -9,15 +9,20 @@ using Android.Content.PM;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 
-namespace Example.Android.Proximity
+namespace Example.Android.Indoor
 {
-    [Activity(Label = "Proximity", MainLauncher = true)]
+    [Activity(Label = "Indoor", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        IProximityObserver observer;
-        IProximityObserverHandler observationHandler;
+        // get your app ID and token on:
+        // https://cloud.estimote.com/#/apps/add/your-own-app
+        private const string APP_ID = "app ID";
+        private const string APP_TOKEN = "app token";
 
-        IProximityZone zone;
+        private const string LOCATION_ID = "my-test-location";
+
+        private bool locationUpdatesStarted = false;
+        private IScanningIndoorLocationManager indoorManager;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,10 +30,27 @@ namespace Example.Android.Proximity
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+        }
 
-            // get your app ID and token on:
-            // https://cloud.estimote.com/#/apps/add/your-own-app
-            var creds = new EstimoteCloudCredentials("app ID", "app token");
+        void StartLocationUpdates()
+        {
+            if (locationUpdatesStarted)
+            {
+                return;
+            }
+            else
+            {
+                locationUpdatesStarted = true;
+            }
+
+            if (indoorManager != null)
+            {
+                Log.Debug("app", "indoorManager already initialized, starting position updates");
+
+                indoorManager.StartPositioning();
+
+                return;
+            }
 
             // starting with Android 8.0, the most reliable way to keep
             // Bluetooth scanning active when the user leaves the app is through
@@ -38,7 +60,7 @@ namespace Example.Android.Proximity
             // read more about it on:
             // https://developer.android.com/guide/components/services.html#Foreground
 
-            var channelId = "proximity_scanning";
+            var channelId = "indoor_location";
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 // Android 8.0 and up require a channel for the notifications
@@ -48,78 +70,84 @@ namespace Example.Android.Proximity
             }
             var notification = new NotificationCompat.Builder(this, channelId)
                     .SetSmallIcon(global::Android.Resource.Drawable.IcDialogInfo)
-                    .SetContentTitle("Proximity")
-                    .SetContentText("Proximity demo is scanning for beacons")
+                    .SetContentTitle("Indoor Location")
+                    .SetContentText("Indoor Location updates are running")
                     .Build();
 
-            observer = new ProximityObserverBuilder(ApplicationContext, creds)
-                .WithBalancedPowerMode()
+            var creds = new EstimoteCloudCredentials(APP_ID, APP_TOKEN);
 
-                // see the longer comment above about the foreground service and
-                // the notification
-                //
-                // if you only intend to use beacons while the app is open, you
-                // can safely remove this line
-                .WithScannerInForegroundService(notification)
-
-                .OnError(new MyErrorHandler())
-                .Build();
-
-            zone = new ProximityZoneBuilder()
-                .ForTag("lobby")
-                .InCustomRange(20.0)
-                .OnEnter(new MyEnterHandler())
-                .Build();
-
-            // the actual observation starts further below in OnResume or
-            // OnRequestPermissionsResult, once we obtain the location
-            // permission from the user, or confirm that we already have it
-
-            Log.Debug("app", "Proximity all ready to go!");
-        }
-
-        void StartProximityObservation()
-        {
-            if (observationHandler != null)
+            var getLocationHandler = new GetLocationHandler();
+            getLocationHandler.GetLocationSuccess += (location) =>
             {
-                // already observing!
-                return;
-            }
+                Log.Debug("app", $"Successfully fetched location from Estimote Cloud: {location}");
+                Log.Debug("app", "Initializing indoorManager and starting position updates");
 
-            Log.Debug("app", "Starting proximity observation");
+                indoorManager = new IndoorLocationManagerBuilder(this, location, creds)
 
-            observationHandler = observer.StartObserving(zone);
+                    // see the longer comment above about the foreground service and
+                    // the notification
+                    //
+                    // if you only intend to use beacons while the app is open, you
+                    // can safely remove this line
+                    .WithScannerInForegroundService(notification)
+
+                    .Build();
+
+                indoorManager.SetOnPositionUpdateListener(new PositionUpdateHandler());
+                indoorManager.StartPositioning();
+            };
+            getLocationHandler.GetLocationFailure += (error) =>
+            {
+                Log.Error("app", $"Failed to fetch the location from Estimote Cloud: {error}");
+            };
+
+            Log.Debug("app", $"Fetching location '{LOCATION_ID}' from Estimote Cloud...");
+            new IndoorCloudManagerFactory()
+                .Create(this, creds)
+                .GetLocation(LOCATION_ID, getLocationHandler);
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            if (observationHandler != null)
+            if (indoorManager != null && locationUpdatesStarted)
             {
-                observationHandler.Stop();
+                locationUpdatesStarted = false;
+
+                indoorManager.StopPositioning();
             }
         }
 
-        class MyEnterHandler : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
+        class GetLocationHandler : Java.Lang.Object, ICloudCallback
         {
-            public Java.Lang.Object Invoke(Java.Lang.Object p0)
+            public delegate void OnGetLocationSuccess(Location location);
+            public event OnGetLocationSuccess GetLocationSuccess;
+
+            public delegate void OnGetLocationFailure(EstimoteCloudException error);
+            public event OnGetLocationFailure GetLocationFailure;
+
+            public void Failure(EstimoteCloudException error)
             {
-                IProximityZoneContext context = (IProximityZoneContext)p0;
+                GetLocationFailure(error);
+            }
 
-                Log.Debug("app", $"MyEnterHandler, context = {context}");
-
-                return null;
+            public void Success(Java.Lang.Object location)
+            {
+                GetLocationSuccess((Location)location);
             }
         }
 
-        class MyErrorHandler : Java.Lang.Object, Kotlin.Jvm.Functions.IFunction1
+        class PositionUpdateHandler : Java.Lang.Object, IOnPositionUpdateListener
         {
-            public Java.Lang.Object Invoke(Java.Lang.Object throwable)
+            public void OnPositionOutsideLocation()
             {
-                Log.Debug("app", $"MyErrorHandler, {throwable}");
+                Log.Debug("app", "OnPositionOutsideLocation");
+            }
 
-                return null;
+            public void OnPositionUpdate(LocationPosition position)
+            {
+                Log.Debug("app", $"OnPositionUpdate: {position}");
             }
         }
 
@@ -157,7 +185,7 @@ namespace Example.Android.Proximity
             {
                 Log.Debug("app", "Already have the location permission");
 
-                StartProximityObservation();
+                StartLocationUpdates();
             }
         }
 
@@ -172,7 +200,7 @@ namespace Example.Android.Proximity
                         {
                             Log.Debug("app", "Location permission granted");
 
-                            StartProximityObservation();
+                            StartLocationUpdates();
                         }
                         else
                         {

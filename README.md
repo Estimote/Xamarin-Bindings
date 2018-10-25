@@ -25,10 +25,12 @@ Here's a list of a few extra things that you need to configure in your projects:
 
 - In your AndroidManifest.xml, you need to add
 
-    - this `<uses-permission>` definition inside the `<manifest>` tag:
+    - these `<uses-permission>` definitions inside the `<manifest>` tag:
 
         ```xml
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
         ```
 
     - this `<service>` definition inside the `<application>` tag:
@@ -40,26 +42,29 @@ Here's a list of a few extra things that you need to configure in your projects:
             android:exported="false" />
         ```
 
-    - here's a full example from the bundled Example.Android.Proximity app:
+    - here's a full example from the bundled Example.Android.Indoor app:
 
         ```xml
-        <?xml version="1.0" encoding="utf-8"?>
-        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:versionCode="1"
-                  android:versionName="1.0"
-                  package="com.estimote.example.Proximity">
+    	<?xml version="1.0" encoding="utf-8"?>
+    	<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    	          android:versionCode="1"
+    		      android:versionName="1.0"
+    		      package="com.estimote.example.Indoor">
 
-            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-            <application android:allowBackup="true" android:label="@string/app_name">
-                <service
-                    android:name="com.estimote.scanning_plugin.packet_provider.service.PacketProviderWrapperService"
-                    android:enabled="true"
-                    android:exported="false" />
-            </application>
+    	    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 
-        </manifest>
-        ```
+    	    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    	    <uses-permission android:name="android.permission.BLUETOOTH" />
+    	    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    	    <application android:allowBackup="true" android:label="@string/app_name">
+    	        <service
+    	            android:name="com.estimote.scanning_plugin.packet_provider.service.PacketProviderWrapperService"
+    		        android:enabled="true"
+    		        android:exported="false" />
+    	    </application>
+    	</manifest>
+    	```
 
 ## Contact & feedback
 

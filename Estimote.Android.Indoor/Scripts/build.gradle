@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+    jcenter()
+}
+
+dependencies {
+    compile 'com.estimote:indoorsdk:2.5.4'
+    compile 'com.estimote:scanning-plugin:0.23.0'
+}
+
+task downloadDependencies(type: Copy) {
+    from configurations.compile
+    eachFile {
+        if (it.file.absolutePath.contains('android.arch.persistence.room')) {
+            println it
+            it.name = 'room-' + it.name
+        }
+        if (it.file.absolutePath.contains('android.arch.core')) {
+            println it
+            it.name = 'core-' + it.name
+        }
+    }
+    into 'tmp'
+    duplicatesStrategy 'fail'
+}

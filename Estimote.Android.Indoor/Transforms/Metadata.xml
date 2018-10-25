@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <remove-node path="//class[@name='BuildConfig']" />
+
+    <attr path="/api/package[starts-with(@name, 'com.estimote.indoor')]" name="managedName">Estimote.Android.Indoor</attr>
+</metadata>
