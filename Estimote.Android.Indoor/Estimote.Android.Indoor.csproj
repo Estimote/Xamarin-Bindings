@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <PackageId>Estimote.Android.Indoor</PackageId>
     <PackageVersion>2.5.4</PackageVersion>
@@ -115,9 +114,6 @@
     <EmbeddedReferenceJar Include="Jars\internal-plugins-api-0.23.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\javax.inject-1.jar" />
     <EmbeddedReferenceJar Include="Jars\ketchup-0.5.0.aar.classes.jar" />
-    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-1.2.41.jar" />
-    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jdk7-1.2.41.jar" />
-    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.2.31.jar" />
     <EmbeddedReferenceJar Include="Jars\logging-interceptor-3.8.0.jar" />
     <EmbeddedReferenceJar Include="Jars\okhttp-3.8.0.jar" />
     <EmbeddedReferenceJar Include="Jars\okio-1.13.0.jar" />
@@ -129,12 +125,16 @@
     <EmbeddedReferenceJar Include="Jars\scanning-plugin-0.23.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\skald-kotlin-0.3.1.jar" />
     <EmbeddedReferenceJar Include="Jars\skald-logcat-plugin-0.1.0.aar.classes.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-1.2.51.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-common-1.2.51.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jdk7-1.2.51.jar" />
+    <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.2.31.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="Jars\indoor-sdk-module-2.5.4.aar.classes.jar" />
   </ItemGroup>
   <ItemGroup>
-    <InputJar Include="Jars\kotlin-stdlib-1.2.41.jar-lite.jar" />
+    <InputJar Include="Jars\kotlin-stdlib-1.2.51.jar-lite.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
