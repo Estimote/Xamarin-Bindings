@@ -8,6 +8,12 @@ repositories {
 dependencies {
     compile 'com.estimote:indoorsdk:2.5.4'
     compile 'com.estimote:scanning-plugin:0.23.0'
+
+    // enforce this particular version of Kotlin JARs for compatibility with
+    // the Proximity SDK & bindings; see also:
+    // - https://github.com/Estimote/Xamarin-Bindings/issues/18
+    // - https://github.com/Estimote/Xamarin-Bindings/pull/19
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51'
 }
 
 task downloadDependencies(type: Copy) {
