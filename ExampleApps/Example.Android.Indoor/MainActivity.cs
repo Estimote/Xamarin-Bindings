@@ -24,12 +24,16 @@ namespace Example.Android.Indoor
         private bool locationUpdatesStarted = false;
         private IScanningIndoorLocationManager indoorManager;
 
+        private IndoorLocationView locationView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+            locationView = FindViewById<IndoorLocationView>(Resource.Id.locationView);
         }
 
         void StartLocationUpdates()
@@ -82,6 +86,8 @@ namespace Example.Android.Indoor
                 Log.Debug("app", $"Successfully fetched location from Estimote Cloud: {location}");
                 Log.Debug("app", "Initializing indoorManager and starting position updates");
 
+                locationView.SetLocation(location);
+
                 indoorManager = new IndoorLocationManagerBuilder(this, location, creds)
 
                     // see the longer comment above about the foreground service and
@@ -93,7 +99,7 @@ namespace Example.Android.Indoor
 
                     .Build();
 
-                indoorManager.SetOnPositionUpdateListener(new PositionUpdateHandler());
+                indoorManager.SetOnPositionUpdateListener(new PositionUpdateHandler(locationView));
                 indoorManager.StartPositioning();
             };
             getLocationHandler.GetLocationFailure += (error) =>
@@ -140,14 +146,25 @@ namespace Example.Android.Indoor
 
         class PositionUpdateHandler : Java.Lang.Object, IOnPositionUpdateListener
         {
+            private IndoorLocationView locationView;
+
+            public PositionUpdateHandler(IndoorLocationView locationView)
+            {
+                this.locationView = locationView;
+            }
+
             public void OnPositionOutsideLocation()
             {
                 Log.Debug("app", "OnPositionOutsideLocation");
+
+                locationView.HidePosition();
             }
 
             public void OnPositionUpdate(LocationPosition position)
             {
                 Log.Debug("app", $"OnPositionUpdate: {position}");
+
+                locationView.UpdatePosition(position);
             }
         }
 

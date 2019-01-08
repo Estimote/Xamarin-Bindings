@@ -25,6 +25,6 @@ zip -r "../$kotlin_stdlib-lite.jar" META-INF kotlin
 cd ..
 
 
-rm indoorsdk-*.jar
+rm indoor-sdk-module-*.jar
 mv *.jar ../../Jars
-mv indoorsdk-*.aar ../../Jars
+mv indoor-sdk-module-*.aar ../../Jars

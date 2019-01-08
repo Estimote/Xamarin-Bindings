@@ -86,7 +86,7 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.v7.AppCompat.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Estimote.Android.Indoor">
-      <HintPath>..\..\packages\Estimote.Android.Indoor.2.5.4\lib\monoandroid90\Estimote.Android.Indoor.dll</HintPath>
+      <HintPath>..\..\packages\Estimote.Android.Indoor.2.5.4.2\lib\monoandroid90\Estimote.Android.Indoor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

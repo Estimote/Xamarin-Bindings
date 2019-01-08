@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,13 +14,14 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <PackageId>Estimote.Android.Indoor</PackageId>
-    <PackageVersion>2.5.4</PackageVersion>
+    <PackageVersion>2.5.4.2</PackageVersion>
     <Authors>Estimote, Inc.</Authors>
     <Description>Xamarin bindings for Estimote Android Indoor SDK</Description>
     <PackageIconUrl>https://developer.estimote.com/assets/gfx/estimote-logo-square-ca9b1b1c.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/Estimote/Android-Indoor-SDK/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Estimote/Xamarin-Bindings</PackageProjectUrl>
     <PackageTags>Estimote Beacons Proximity</PackageTags>
+    <PackageReleaseNotes>Fixes NoClassDefFoundError: indoorsdk_module/R$drawable when trying to use the IndoorLocationView. (https://github.com/Estimote/Xamarin-Bindings/issues/20)</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,9 +104,6 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\indoorsdk-2.5.4.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\annotations-13.0.jar" />
     <EmbeddedReferenceJar Include="Jars\cloud-plugin-1.0.1.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\converter-gson-2.2.0.jar" />
@@ -131,13 +129,15 @@
     <EmbeddedReferenceJar Include="Jars\kotlin-stdlib-jre7-1.2.31.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="Jars\indoor-sdk-module-2.5.4.aar.classes.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <InputJar Include="Jars\kotlin-stdlib-1.2.51.jar-lite.jar" />
   </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\indoor-sdk-module-2.5.4.aar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="Jars\indoorsdk-2.5.4.aar.classes.jar" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Annotations.targets')" />
   <Import Project="..\packages\Xamarin.Android.Arch.Core.Common.1.0.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />
   <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.3.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.3.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
@@ -151,4 +151,5 @@
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v7.AppCompat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.v7.AppCompat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.AppCompat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.v7.AppCompat.targets')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
 </Project>
