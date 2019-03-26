@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
@@ -113,8 +113,6 @@
     <EmbeddedReferenceJar Include="Jars\javax.inject-1.jar" />
     <EmbeddedReferenceJar Include="Jars\ketchup-0.5.0.aar.classes.jar" />
     <EmbeddedReferenceJar Include="Jars\logging-interceptor-3.8.0.jar" />
-    <EmbeddedReferenceJar Include="Jars\okhttp-3.8.0.jar" />
-    <EmbeddedReferenceJar Include="Jars\okio-1.13.0.jar" />
     <EmbeddedReferenceJar Include="Jars\reactive-streams-1.0.1.jar" />
     <EmbeddedReferenceJar Include="Jars\retrofit-2.2.0.jar" />
     <EmbeddedReferenceJar Include="Jars\retrofit2-rxjava2-adapter-1.0.0.jar" />
