@@ -28,7 +28,7 @@ namespace Example.Android.Proximity
 
             // get your app ID and token on:
             // https://cloud.estimote.com/#/apps/add/your-own-app
-            var creds = new EstimoteCloudCredentials("app ID", "app token");
+            var creds = new EstimoteCloudCredentials("app_253nrtyl61", "1a17672c29e67ab2bcf338fe4fe2d57e");
 
             // starting with Android 8.0, the most reliable way to keep
             // Bluetooth scanning active when the user leaves the app is through
@@ -66,7 +66,7 @@ namespace Example.Android.Proximity
                 .Build();
 
             zone = new ProximityZoneBuilder()
-                .ForTag("lobby")
+                .ForTag("proximity-one-cet")
                 .InCustomRange(20.0)
                 .OnEnter(new MyEnterHandler())
                 .Build();
