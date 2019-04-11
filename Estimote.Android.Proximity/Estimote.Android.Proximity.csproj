@@ -14,13 +14,14 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <PackageId>Estimote.Android.Proximity</PackageId>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>1.0.3.1</PackageVersion>
     <Authors>Estimote, Inc.</Authors>
     <Description>Xamarin bindings for Estimote Android Proximity SDK</Description>
     <PackageProjectUrl>https://github.com/Estimote/Xamarin-Bindings</PackageProjectUrl>
     <PackageIconUrl>https://developer.estimote.com/assets/gfx/estimote-logo-square-ca9b1b1c.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/Estimote/Android-Proximity-SDK/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Estimote Beacons Proximity</PackageTags>
+    <PackageReleaseNotes>Fixes conflicts with Xamarin.Android.Support.Annotations, Square.OkHttp3, and Square.OkIO NuGet packages.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
