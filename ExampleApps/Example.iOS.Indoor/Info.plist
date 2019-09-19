@@ -44,5 +44,7 @@
 	<array>
 		<string>bluetooth-central</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Change me in the Info.plist file (bluetooth)</string>
 </dict>
 </plist>
