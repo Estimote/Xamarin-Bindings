@@ -11,20 +11,14 @@
     <AssemblyName>Estimote.iOS.Proximity</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackageId>Estimote.iOS.Proximity</PackageId>
-    <PackageVersion>1.3.1</PackageVersion>
+    <PackageVersion>1.5.0</PackageVersion>
     <Authors>Estimote, Inc.</Authors>
     <Description>Xamarin bindings for Estimote iOS Proximity SDK</Description>
     <PackageIconUrl>https://developer.estimote.com/assets/gfx/estimote-logo-square-ca9b1b1c.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/Estimote/iOS-Proximity-SDK/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Estimote/Xamarin-Bindings</PackageProjectUrl>
     <PackageTags>Estimote Beacons Proximity</PackageTags>
-    <PackageReleaseNotes>Compatibility update for Xcode 10.2 and Swift 5.
-
-IMPORTANT: This breaks compatibility with earlier Xcode versions, so if you haven't updated yet, you should continue using Estimote.iOS.Proximity 1.2.0.
-
-IMPORTANT: With this update, we switched from Xamarin.Swift4 to Xamarin.Swift as a dependency. Xamarin.Swift is smarter replacement for Xamarin.Swift4, that evaluates your project and automatically includes necessary Swift libraries if needed. For example, if your app is targeting iOS 12.2 or later, you don't need Swift libraries bundled with your app anymore, since Swift 5 libraries are now included in the iOS itself. Long live ABI stability!
-
-There are no API/feature changes compared to 1.2.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Compatibility update for iOS 13, Xcode 11, and Swift 5.1.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,5 +67,5 @@ There are no API/feature changes compared to 1.2.0.</PackageReleaseNotes>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
-  <Import Project="..\packages\Xamarin.Swift.1.0.1\build\xamarinios\Xamarin.Swift.targets" Condition="Exists('..\packages\Xamarin.Swift.1.0.1\build\xamarinios\Xamarin.Swift.targets')" />
+  <Import Project="..\packages\Xamarin.Swift.1.0.2\build\xamarinios\Xamarin.Swift.targets" Condition="Exists('..\packages\Xamarin.Swift.1.0.2\build\xamarinios\Xamarin.Swift.targets')" />
 </Project>

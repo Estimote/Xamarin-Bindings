@@ -44,5 +44,7 @@
 	<string>Change me in the Info.plist file (when-in-use)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Change me in the Info.plist file (always-and-when-in-use)</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Change me in the Info.plist file (bluetooth)</string>
 </dict>
 </plist>
