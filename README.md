@@ -18,6 +18,8 @@ Here's a list of a few extra things that you need to configure in your projects:
 
     - `NSLocationWhenInUseUsageDescription` and `NSLocationAlwaysAndWhenInUseUsageDescription`
         - for more infor about the two, see [Set the Location Services usage description](https://developer.estimote.com/proximity/ios-tutorial/#set-the-location-services-usage-description) in our integration tutorial
+        
+    - `NSBluetoothAlwaysUsageDescription`
 
     - `UIBackgroundModes` => `bluetooth-central`
 
